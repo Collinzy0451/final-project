@@ -14,7 +14,7 @@ const Navbar = () => {
 
         {/* logo */}
         <div className='nav__logo'>
-            <Link to="/">CJs Hub<span>.</span></Link>
+            <Link to="/">MiMies Luxury<span>.</span></Link>
         </div>
 
         {/* nav_Icons */}
@@ -33,7 +33,7 @@ const Navbar = () => {
                 </button>
                 <span>
                     <Link to="login"> 
-                    <i class="ri-user-fill"></i>
+                    <i className="ri-user-fill"></i>
                     </Link>
                 </span>
             </span>
