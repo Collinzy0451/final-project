@@ -21,9 +21,11 @@
 }
 
 .section__container {
-  max-width: var(--max-width-1400);
+  height:auto;
+  max-width: var(--max-width-800);
   margin: auto;
   padding: 2rem 1rem;
+  text-align: center;
 }
 
 .section__header {
@@ -206,6 +208,11 @@ nav {
   color: var(--text-dark);
 }
 
+.custom-width {
+  max-width: 90%; 
+  margin: 0 auto;
+}
+
 .hero__container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -295,10 +302,13 @@ nav {
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   align-items: center;
+  height: 500px;
+  margin: 50px;
+  width: 80%;
 }
 
 .deals__image {
-  height: 100%;
+  height: 70%;
   position: relative;
 }
 
@@ -312,7 +322,7 @@ nav {
 
 .deals__content {
   max-width: 600px;
-  margin-right: auto;
+  margin: 50px;
 }
 
 .deals__content h5 {
@@ -520,6 +530,7 @@ nav {
 
   .deals__container {
     grid-template-columns: repeat(1, 1fr);
+    justify-content: center;  
   }
 
   .deals__content {
