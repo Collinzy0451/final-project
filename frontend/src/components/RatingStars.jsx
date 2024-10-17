@@ -1,16 +1,15 @@
-import React from 'react';
+import React from 'react'
 
-const RatingStars = ({ rating }) => {
-    // Replace <div> with <span> or wrap it in a block element like <div> outside the <p>
-    return (
-        <span className="rating-stars">
-            {[...Array(5)].map((star, index) => (
-                <span key={index}>
-                    {index < rating ? '★' : '☆'}
-                </span>
-            ))}
-        </span>
-    );
-};
+const RatingStars = ({rating}) => {
+    const stars = [];
+    for (let i =1 ; i <= 5 ; i++) {
+        stars.push(
+            <span key={i} className={`ri-star${i <= rating ? '-fill' : '-line'}`}></span>
+        )
+    }
+  return (
+    <div className='product__rating'>{stars}</div>
+  )
+}
 
-export default RatingStars;
+export default RatingStars

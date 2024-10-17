@@ -1,35 +1,46 @@
-import React, {useState} from 'react'
-import ProductCards from './ProductCards'
-
-import products from '../../data/products.json'
+import React, { useState } from 'react';
+import ProductCards from './ProductCards';
+// Removed the local products import
+// import products from '../../data/products.json';
+import { useFetchAllProductsQuery } from '../../redux/features/products/productApi';
 
 const TrendingProducts = () => {
     const [visibleProducts, setVisibleProducts] = useState(8);
-    
+
+    // Fetch all products from the database
+    const { data: { products = [] } = {}, error, isLoading } = useFetchAllProductsQuery({
+        limit: 100, // Fetch a large number of products, assuming "trending" is among all products
+    });
+
+    // Function to load more products
     const loadMoreProducts = () => {
-        setVisibleProducts(prevCount => prevCount + 4)
-    }
-  return (
-    <section className='section__container product__container'>
-        <h2 className='section__header'>Trending Products</h2>
-        <p className='section__subheader mb-12'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis quasi delectus animi nobis eaque veniam fuga voluptatum velit, ratione ipsa saepe mollitia quas iste libero ipsam impedit unde voluptas amet?</p>
-    
-        {/* product cards */}
-        <div className='mt-12'>
-            <ProductCards products={products.slice(0, visibleProducts)}/>
-        </div>
+        setVisibleProducts(prevCount => prevCount + 4);
+    };
 
-        {/* load more products */}
-        <div className='product__btn'>
-            {
-                visibleProducts < products.length && (
-                    <button className='btn' onClick={loadMoreProducts}>Load More</button>
-                )
-            }
+    if (isLoading) return <div>Loading trending products...</div>;
+    if (error) return <div>Error loading trending products.</div>;
 
-        </div>
-    </section>
-  )
-}
+    return (
+        <section className='section__container product__container'>
+            <h2 className='section__header'>Trending Products</h2>
+            <p className='section__subheader mb-12'>
+            Explore our Trending Products collection, featuring the latest in-demand styles and must-have items. From seasonal trends to standout pieces, these popular picks are selling fast. Shop now and elevate your wardrobe before they’re gone!
+            </p>
+            {/* product cards */}
+            <div className='mt-12'>
+                <ProductCards products={products.slice(0, visibleProducts)} />
+            </div>
 
-export default TrendingProducts
+            {/* load more products */}
+            <div className='product__btn'>
+                {visibleProducts < products.length && (
+                    <button className='btn' onClick={loadMoreProducts}>
+                        Load More
+                    </button>
+                )}
+            </div>
+        </section>
+    );
+};
+
+export default TrendingProducts;
